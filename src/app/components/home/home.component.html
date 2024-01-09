@@ -8,9 +8,10 @@
 <div class="flex flex-wrap -mx-4 mt-8">
   <div *ngFor="let vaga of vagas" class="w-full sm:w-1/2 md:w-1/3 px-4 mb-4">
     <div class="max-w-md rounded overflow-hidden shadow-lg border">
-      <div class="px-6 py-6"> <!-- Aumentei o valor da margem aqui -->
-        <div class="font-bold text-xl mb-4">{{ vaga.titulo }}</div> <!-- Mais espaço aqui -->
-        <p class="text-gray-700 text-base mb-4">{{ vaga.descricao }}</p> <!-- Mais espaço aqui -->
+      <div class="px-6 py-6">
+        <div class="font-bold text-xl mb-2">{{ vaga.titulo }}</div>
+        <p class="text-gray-700 text-xs mb-4">Data de publicação: {{ vaga.dataPublicacao | date: 'dd/MM/yyyy' }}</p>
+        <p class="text-gray-700 text-base mb-4">{{ vaga.descricao }}</p>
         <div class="flex flex-wrap mt-4">
           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#{{ vaga.modalidadeVaga }}</span>
           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#{{ vaga.tipoVaga }}</span>

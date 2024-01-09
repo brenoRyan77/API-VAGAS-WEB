@@ -47,6 +47,8 @@ export class PublicarVagasComponent implements OnInit {
       descricao: new FormControl(data? data.descricao: null, [Validators.required]),
       modalidadeVaga: new FormControl(data? data.modalidadeVaga: null, [Validators.required]),
       tipoVaga: new FormControl(data? data.tipoVaga: null, [Validators.required]),
+      nivel: new FormControl(data? data.nivel: null, [Validators.required]),
+      escolaridade: new FormControl(data? data.escolaridade: null, [Validators.required]),
     })
   }
 

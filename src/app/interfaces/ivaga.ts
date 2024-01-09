@@ -3,4 +3,6 @@ export interface IVaga {
   descricao: string;
   modalidadeVaga: string;
   tipoVaga: string;
+  nivel: string
+  escolaridade: string
 }
