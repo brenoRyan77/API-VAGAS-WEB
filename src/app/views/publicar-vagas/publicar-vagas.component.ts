@@ -46,10 +46,9 @@ export class PublicarVagasComponent implements OnInit {
   }
 
   salvar(): void{
-    console.log(this.form.value)
     this.vagaService.cadastrarVaga(this.form.getRawValue()).subscribe((res) => {
       alert('Vaga publicada com sucesso!')
-      this.rout.navigate(['/'])
+      this.rout.navigate(['/home'])
     }, (error) => {
       alert('Deu erro!')
     })
