@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { IVaga } from 'src/app/interfaces/ivaga';
 import { VagaServiceService } from 'src/app/services/vaga-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-publicar-vagas',
@@ -13,6 +14,7 @@ export class PublicarVagasComponent implements OnInit {
 
   form!: FormGroup
   id!: number;
+  $sources!: IVaga
 
   modalidadeVaga = [
     {value: 'PRESENCIAL', nome: 'Presencial'},
@@ -30,10 +32,13 @@ export class PublicarVagasComponent implements OnInit {
   ngOnInit(): void {
     this.createForm()
     this.id = Number(this.router.snapshot.params['id'])
+    if (this.id) {
+      this.buscarPorId();
+    }
   }
 
   onSubmit(): void {
-    this.id ? console.log('tem id') : this.salvar()
+    this.id ? this.atualizarVaga() : this.salvar()
   }
 
   createForm(data?: IVaga): void{
@@ -45,13 +50,62 @@ export class PublicarVagasComponent implements OnInit {
     })
   }
 
-  salvar(): void{
-    this.vagaService.cadastrarVaga(this.form.getRawValue()).subscribe((res) => {
-      alert('Vaga publicada com sucesso!')
-      this.rout.navigate(['/home'])
-    }, (error) => {
-      alert('Deu erro!')
-    })
+  salvar(): void {
+    this.vagaService.cadastrarVaga(this.form.getRawValue()).subscribe(
+      (res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Sucesso!',
+          text: 'Vaga publicada com sucesso!',
+        }).then(() => {
+          this.rout.navigate(['/home']);
+        });
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro!',
+          text: 'Ocorreu um erro ao publicar a vaga.',
+        });
+      }
+    );
+  }
+  buscarPorId(): void {
+    this.vagaService.buscarPorId(this.id).subscribe(
+      (response) => {
+        this.createForm(response);
+        this.$sources = response;
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro!',
+          text: 'Ocorreu um erro ao buscar por ID.',
+        });
+      }
+    );
+  }
+
+  atualizarVaga(): void {
+    this.vagaService.atualzarVaga(this.id, this.form.getRawValue()).subscribe(
+      (res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Sucesso!',
+          text: 'Atualização efetuada!',
+        }).then(() => {
+          this.form.reset();
+          this.rout.navigate(['/home']);
+        });
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro!',
+          text: 'Erro ao editar vaga.',
+        });
+      }
+    );
   }
 
 }

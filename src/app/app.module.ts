@@ -17,7 +17,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     NavComponent,
     PublicarVagasComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
