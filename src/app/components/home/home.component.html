@@ -12,9 +12,11 @@
         <div class="font-bold text-xl mb-2">{{ vaga.titulo }}</div>
         <p class="text-gray-700 text-xs mb-4">Data de publicação: {{ vaga.dataPublicacao | date: 'dd/MM/yyyy' }}</p>
         <p class="text-gray-700 text-base mb-4">{{ vaga.descricao }}</p>
+        <p *ngIf="vaga.escolaridade" class="text-gray-700 text-xs font-bold mb-2">Escolaridade: {{ vaga.escolaridade }}</p>
         <div class="flex flex-wrap mt-4">
           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#{{ vaga.modalidadeVaga }}</span>
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#{{ vaga.tipoVaga }}</span>
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#{{ vaga.tipoVaga }}</span>
+          <span *ngIf="vaga.nivel !== null && vaga.nivel !== undefined" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#{{ vaga.nivel }}</span>
         </div>
         <ng-container *ngIf="isAdmin">
           <button [routerLink]="['/publicar-vagas/', vaga.id]" class="bg-green-400 hover:bg-green-600 text-white font-bold py-1 px-2 rounded mt-4 text-sm mr-2">Editar</button>
