@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IVaga } from 'src/app/interfaces/ivaga';
 import { AuthService } from 'src/app/services/auth.service';
+import { CandidaturaService } from 'src/app/services/candidatura.service';
 import { VagaServiceService } from 'src/app/services/vaga-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +17,7 @@ export class HomeComponent implements OnInit {
   isAdmin = false;
   isLoading = false;
 
-  constructor(private authSevice: AuthService, private vagService: VagaServiceService) { }
+  constructor(private authSevice: AuthService, private vagService: VagaServiceService, private candidaturaService: CandidaturaService) { }
 
   ngOnInit(): void {
     this.isAdmin = this.authSevice.isAdmin();
@@ -41,6 +44,30 @@ export class HomeComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  aplicarVaga(idVaga: Number): void{
+    this.isLoading = true; 
+    const payload: any = {
+      login: localStorage.getItem('acessUser'),
+      idVaga: idVaga
+    }
+    this.candidaturaService.aplicarVaga(payload).subscribe((res) => {
+      this.isLoading = false;
+      Swal.fire({
+        icon: 'success',
+        title: 'Sucesso!',
+        text: 'Vaga aplicada com sucesso!',
+      })
+    },
+    (error) => {
+      this.isLoading = false;
+      Swal.fire({
+        icon: 'warning',
+        title: 'Ops!',
+        text: error.error.message,
+      })});
+
   }
 
 }

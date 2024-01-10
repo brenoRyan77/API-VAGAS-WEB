@@ -23,7 +23,7 @@
           <button (click)="encerrarVaga(vaga.id)" class="bg-red-400 hover:bg-red-600 text-white font-bold py-1 px-2 rounded mt-4 text-sm">Encerrar</button>
         </ng-container>
         <ng-container *ngIf="!isAdmin">
-          <button class="bg-green-400 hover:bg-green-600 text-white font-bold py-1 px-2 rounded mt-4 text-sm">Aplicar</button>
+          <button (click)="aplicarVaga(vaga.id)" class="bg-green-400 hover:bg-green-600 text-white font-bold py-1 px-2 rounded mt-4 text-sm">Aplicar</button>
         </ng-container>
       </div>
     </div>

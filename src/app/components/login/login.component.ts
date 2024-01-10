@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
     console.log(this.form.value)
     this.loginService.login(this.form.getRawValue()).subscribe((res) => {
       localStorage.setItem('accessToken', res.accessToken);
+      localStorage.setItem('acessUser', res.username)
       localStorage.setItem('currentUser', JSON.stringify(res));
       console.log(res)
       this.rout.navigate(['/home'])
