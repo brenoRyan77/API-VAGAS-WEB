@@ -1,0 +1,32 @@
+<div>
+    <div class="text-center mb-6">
+        <h1 class="text-3xl font-bold">Minhas Candidaturas</h1>
+      </div>
+    <div class="flex flex-wrap -mx-4 mt-8" *ngIf="candidaturas && candidaturas.length > 0">
+      <div *ngFor="let candidatura of candidaturas" class="w-full sm:w-1/2 md:w-1/3 px-4 mb-4">
+        <div class="max-w-md rounded overflow-hidden shadow-lg border">
+          <div class="px-6 py-6">
+            <div class="font-bold text-xl mb-2">{{ candidatura.vaga.titulo }}</div>
+            <p class="text-gray-700 text-xs mb-2">Status: {{ candidatura.status }}</p>
+            <p class="text-gray-700 text-xs mb-4">Data de candidatura: {{ candidatura.dataAplicacao }}</p>
+            <p class="text-gray-700 text-base mb-4">{{ candidatura.vaga.descricao }}</p>
+            <div class="flex flex-wrap mt-4">
+              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#{{ candidatura.vaga.modalidadeVaga }}</span>
+              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#{{ candidatura.vaga.tipoVaga }}</span>
+              <span *ngIf="candidatura.vaga.nivel" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#{{ candidatura.vaga.nivel }}</span>
+            </div>
+            <p *ngIf="candidatura.vaga.escolaridade" class="text-gray-700 text-xs font-bold mt-2">Escolaridade: {{ candidatura.vaga.escolaridade }}</p>
+            
+            <button class="bg-red-400 hover:bg-red-600 text-white font-bold py-1 px-2 rounded mt-4 text-sm">Desistir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center items-center h-full" *ngIf="!candidaturas || candidaturas.length === 0">
+        <p class="text-gray-500 text-center text-sm">
+            Nenhuma candidatura encontrada.
+            <br />
+            Você ainda não se candidatou a nenhuma vaga.
+        </p>
+    </div>
+  </div>

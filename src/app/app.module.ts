@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { MinhasCandidaturasComponent } from './views/minhas-candidaturas/minhas-candidaturas.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     PublicarVagasComponent,
     HomeComponent,
     LoginComponent,
+    MinhasCandidaturasComponent,
   ],
   imports: [
     BrowserModule,
