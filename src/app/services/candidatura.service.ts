@@ -14,4 +14,12 @@ export class CandidaturaService {
   aplicarVaga(payload: any): Observable<any>{
     return this.http.post<any>(this.baseUrl, payload);
   }
+
+  listar(user: any): Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/minhas-candidaturas/${user}`)
+  }
+
+  desistir(username: any, idCandidatura: Number): Observable<any>{
+    return this.http.delete<any>(`${this.baseUrl}/desistir/${username}/${idCandidatura}`)
+  }
 }

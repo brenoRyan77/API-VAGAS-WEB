@@ -1,3 +1,6 @@
+<div *ngIf="isLoading" class="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-300 bg-opacity-50 z-50">
+    <div class="animate-spin rounded-full h-20 w-20 border-t-2 border-b-2 border-gray-900"></div>
+  </div>
 <div>
     <div class="text-center mb-6">
         <h1 class="text-3xl font-bold">Minhas Candidaturas</h1>
@@ -17,7 +20,7 @@
             </div>
             <p *ngIf="candidatura.vaga.escolaridade" class="text-gray-700 text-xs font-bold mt-2">Escolaridade: {{ candidatura.vaga.escolaridade }}</p>
             
-            <button class="bg-red-400 hover:bg-red-600 text-white font-bold py-1 px-2 rounded mt-4 text-sm">Desistir</button>
+            <button *ngIf="candidatura.status === 'Em análise'" (click)="desistir(candidatura.idCandidatura)" class="bg-red-400 hover:bg-red-600 text-white font-bold py-1 px-2 rounded mt-4 text-sm">Desistir</button>
           </div>
         </div>
       </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CandidaturaService } from 'src/app/services/candidatura.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-minhas-candidaturas',
@@ -7,44 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MinhasCandidaturasComponent implements OnInit {
 
-  constructor() { }
+  isLoading = false;
+  constructor(private candidaturaService: CandidaturaService) { }
 
   ngOnInit(): void {
+    this.recuperarMinhasVagas()
   }
 
-  candidaturas: any = [
-    {
-      "idCandidatura": 1,
-      "status": "Em análise",
-      "dataAplicacao": "09/01/2024",
-      "vaga": {
-        "id": 1,
-        "titulo": "Desenvolvedor Frontend",
-        "descricao": "Experiência com Vue",
-        "modalidadeVaga": "PRESENCIAL",
-        "tipoVaga": "CLT",
-        "nivel": null,
-        "escolaridade": null,
-        "dataPublicacao": "08/01/2024",
-        "dataEncerramento": null
-      }
-    },
-    {
-      "idCandidatura": 2,
-      "status": "Em análise",
-      "dataAplicacao": "09/01/2024",
-      "vaga": {
-        "id": 104,
-        "titulo": "Pessoa Desenvolvedora Full Stack",
-        "descricao": "Detalhes da vaga\n\nAcreditamos no poder transformador da tecnologia e na sua capacidade de contribuir para a construção de uma sociedade mais diversa e inclusiva. Como a maior empresa brasileira de tecnologia, temos o compromisso com uma política e programa de diversidade e inclusão para termos um ecossistema cada vez mais representativo, respeitoso e acolhedor.",
-        "modalidadeVaga": "HOME_OFFICE",
-        "tipoVaga": "PJ",
-        "nivel": "Pleno",
-        "escolaridade": null,
-        "dataPublicacao": "09/01/2024",
-        "dataEncerramento": null
-      }
-    }
-  ]
+  candidaturas: any = []
+
+  recuperarMinhasVagas() {
+    const username = localStorage.getItem('acessUser')
+    this.isLoading = true;
+    this.candidaturaService.listar(username).subscribe((res) => {
+      this.candidaturas = res
+      this.isLoading = false;
+    })
+  }
+
+  desistir(idCandidatura: Number): void{
+    const login = localStorage.getItem('acessUser')
+    this.isLoading = true;
+    this.candidaturaService.desistir(login, idCandidatura).subscribe((res) => {
+      this.recuperarMinhasVagas()
+    })
+  }
 
 }
