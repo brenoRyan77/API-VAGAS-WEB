@@ -11,6 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { MinhasCandidaturasComponent } from './views/minhas-candidaturas/minhas-candidaturas.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MinhasCandidaturasComponent } from './views/minhas-candidaturas/minhas-
     HomeComponent,
     LoginComponent,
     MinhasCandidaturasComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
