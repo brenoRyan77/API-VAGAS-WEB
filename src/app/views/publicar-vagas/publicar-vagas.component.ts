@@ -27,6 +27,18 @@ export class PublicarVagasComponent implements OnInit {
     {value: 'CLT', nome: 'CLT'},
   ]
 
+  nivel = [
+    {value: 'Estagiário', nivel: 'Estagiário'},
+    {value: 'Júnior', nivel: 'Júnior'},
+    {value: 'Pleno', nivel: 'Pleno'},
+    {value: 'Sênior', nivel: 'Sênior'},
+  ]
+
+  escolaridade = [
+    {value: 'Superior completo/Cursando', nome: 'Superior completo/Cursando'},
+    {value: 'Não se aplica', nome: 'Não se aplica'},
+  ]
+
   constructor(private vagaService: VagaServiceService, private formBuilder: FormBuilder, private router: ActivatedRoute, private rout: Router) { }
 
   ngOnInit(): void {

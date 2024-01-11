@@ -22,7 +22,7 @@ export class MinhasCandidaturasComponent implements OnInit {
     const username = localStorage.getItem('acessUser')
     this.isLoading = true;
     this.candidaturaService.listar(username).subscribe((res) => {
-      this.candidaturas = res
+      this.candidaturas = res.slice().sort((a: any, b: any) => a.status === 'Em análise' ? -1 : b.status === 'Em análise' ? 1 : 0);
       this.isLoading = false;
     })
   }
