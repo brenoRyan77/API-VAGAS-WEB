@@ -10,7 +10,7 @@
     <div class="max-w-md rounded overflow-hidden shadow-lg border">
       <div class="px-6 py-6">
         <div class="font-bold text-xl mb-2">{{ vaga.titulo }}</div>
-        <p class="text-gray-700 text-xs mb-4">Data de publicação: {{ vaga.dataPublicacao | date: 'dd/MM/yyyy' }}</p>
+        <p class="text-gray-700 text-xs mb-4">Data de publicação: {{ vaga.dataPublicacao }}</p>
         <p class="text-gray-700 text-base mb-4">{{ vaga.descricao }}</p>
         <p *ngIf="vaga.escolaridade" class="text-gray-700 text-xs font-bold mb-2">Escolaridade: {{ vaga.escolaridade }}</p>
         <div class="flex flex-wrap mt-4">

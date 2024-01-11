@@ -13,12 +13,12 @@
             <p class="text-gray-700 text-xs mb-2">Status: {{ candidatura.status }}</p>
             <p class="text-gray-700 text-xs mb-4">Data de candidatura: {{ candidatura.dataAplicacao }}</p>
             <p class="text-gray-700 text-base mb-4">{{ candidatura.vaga.descricao }}</p>
+            <p *ngIf="candidatura.vaga.escolaridade" class="text-gray-700 text-xs font-bold mt-2">Escolaridade: {{ candidatura.vaga.escolaridade }}</p>
             <div class="flex flex-wrap mt-4">
               <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#{{ candidatura.vaga.modalidadeVaga }}</span>
               <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#{{ candidatura.vaga.tipoVaga }}</span>
               <span *ngIf="candidatura.vaga.nivel" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#{{ candidatura.vaga.nivel }}</span>
             </div>
-            <p *ngIf="candidatura.vaga.escolaridade" class="text-gray-700 text-xs font-bold mt-2">Escolaridade: {{ candidatura.vaga.escolaridade }}</p>
             
             <button *ngIf="candidatura.status === 'Em análise'" (click)="desistir(candidatura.idCandidatura)" class="bg-red-400 hover:bg-red-600 text-white font-bold py-1 px-2 rounded mt-4 text-sm">Desistir</button>
           </div>
